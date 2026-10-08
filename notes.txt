@@ -1,0 +1,3259 @@
+# NOTES LINUX ET BASH
+# Projet : linux-permission-manager
+
+============================================================
+OBJECTIF DES NOTES
+============================================================
+
+Ces notes servent à conserver tout ce qui a été appris pendant
+la création et les tests du projet Linux Permission Manager.
+
+Les explications sont en français.
+
+Le code du projet peut contenir des commentaires et messages
+en anglais.
+
+Règle :
+
+Avant de passer à une nouvelle notion, il faut comprendre
+la notion précédente.
+
+Chaque commande est expliquée avec :
+
+- son nom ;
+- sa signification ;
+- sa syntaxe ;
+- ses options ;
+- ses arguments ;
+- son fonctionnement ;
+- un exemple ;
+- son utilisation dans le projet lorsque cela est applicable.
+
+
+============================================================
+PARTIE 1 — NAVIGATION LINUX
+============================================================
+
+
+------------------------------------------------------------
+1. pwd
+------------------------------------------------------------
+
+Commande :
+
+pwd
+
+Signification :
+
+pwd signifie :
+
+Print Working Directory
+
+En français :
+
+Afficher le répertoire de travail actuel.
+
+Cette commande permet de savoir dans quel dossier se trouve
+actuellement le terminal.
+
+Exemple :
+
+pwd
+
+Résultat possible :
+
+/home/ghostroot
+
+Cela signifie que le terminal se trouve actuellement dans :
+
+/home/ghostroot
+
+Décomposition :
+
+pwd
+│
+└── commande
+
+Il n'y a ici :
+
+- aucun argument ;
+- aucune option.
+
+
+------------------------------------------------------------
+2. ls
+------------------------------------------------------------
+
+Commande :
+
+ls
+
+Signification :
+
+ls affiche le contenu du répertoire courant.
+
+Exemple :
+
+ls
+
+Résultat possible :
+
+examples
+perm-manager.sh
+test-function-menu.sh
+test-read.sh
+notes.txt
+README.md
+test-menu.sh
+test-while.sh
+
+Si le terminal se trouve dans :
+
+/home/ghostroot/linux-permission-manager
+
+alors :
+
+ls
+
+affiche les fichiers et dossiers de ce projet.
+
+Décomposition :
+
+ls
+│
+└── commande
+
+
+------------------------------------------------------------
+3. ls -l
+------------------------------------------------------------
+
+Commande :
+
+ls -l
+
+`-l` signifie :
+
+long format
+
+Cela demande à `ls` d'afficher davantage d'informations.
+
+Exemple :
+
+ls -l
+
+On peut notamment voir :
+
+- les permissions ;
+- le propriétaire ;
+- le groupe ;
+- la taille ;
+- la date ;
+- le nom.
+
+Décomposition :
+
+ls
+│
+├── commande
+│
+└── -l
+    └── option long format
+
+
+------------------------------------------------------------
+4. ls -la
+------------------------------------------------------------
+
+Commande :
+
+ls -la
+
+Il y a deux options :
+
+-l
+
+et :
+
+-a
+
+`-l` :
+
+affichage détaillé.
+
+`-a` :
+
+all.
+
+`-a` permet d'afficher également les fichiers cachés.
+
+Donc :
+
+ls -la
+
+signifie :
+
+afficher le contenu avec les informations détaillées
+et inclure les fichiers cachés.
+
+
+------------------------------------------------------------
+5. cd
+------------------------------------------------------------
+
+Commande :
+
+cd dossier
+
+Signification :
+
+cd signifie :
+
+Change Directory
+
+En français :
+
+Changer de répertoire.
+
+Exemple :
+
+cd linux-permission-manager
+
+Le terminal entre dans ce dossier.
+
+Autre exemple :
+
+cd ~/linux-permission-manager
+
+Cette commande est utilisée pour entrer dans le projet.
+
+
+------------------------------------------------------------
+6. cd ..
+------------------------------------------------------------
+
+Commande :
+
+cd ..
+
+`cd` :
+
+changer de répertoire.
+
+`..` :
+
+répertoire parent.
+
+Donc :
+
+cd ..
+
+signifie :
+
+remonter d'un niveau.
+
+Exemple :
+
+Si on se trouve dans :
+
+/home/ghostroot/linux-permission-manager
+
+alors :
+
+cd ..
+
+nous ramène dans :
+
+/home/ghostroot
+
+
+------------------------------------------------------------
+7. cd ~
+------------------------------------------------------------
+
+Commande :
+
+cd ~
+
+`~` représente le répertoire personnel de l'utilisateur.
+
+Donc :
+
+cd ~
+
+signifie :
+
+aller dans le répertoire personnel.
+
+Exemple :
+
+/home/ghostroot
+
+
+------------------------------------------------------------
+8. ~
+------------------------------------------------------------
+
+Le symbole :
+
+~
+
+représente le répertoire personnel.
+
+Exemple :
+
+~/linux-permission-manager
+
+peut représenter :
+
+/home/ghostroot/linux-permission-manager
+
+
+------------------------------------------------------------
+9. .
+------------------------------------------------------------
+
+Le symbole :
+
+.
+
+représente le répertoire courant.
+
+Exemple :
+
+.
+
+signifie :
+
+le dossier dans lequel je me trouve actuellement.
+
+
+------------------------------------------------------------
+10. ..
+------------------------------------------------------------
+
+Le symbole :
+
+..
+
+représente le répertoire parent.
+
+Exemple :
+
+cd ..
+
+signifie :
+
+aller dans le dossier parent.
+
+
+------------------------------------------------------------
+11. ./
+------------------------------------------------------------
+
+Exemple :
+
+./perm-manager.sh
+
+`./` signifie :
+
+dans le répertoire courant.
+
+Donc :
+
+./perm-manager.sh
+
+signifie :
+
+exécuter `perm-manager.sh` qui se trouve dans le répertoire
+courant.
+
+
+============================================================
+PARTIE 2 — FICHIERS ET DOSSIERS
+============================================================
+
+
+------------------------------------------------------------
+12. touch
+------------------------------------------------------------
+
+Commande :
+
+touch fichier.txt
+
+`touch` permet de créer un fichier s'il n'existe pas.
+
+Exemple :
+
+touch test.txt
+
+Après cette commande, le fichier :
+
+test.txt
+
+existe.
+
+Si le fichier existe déjà, `touch` peut notamment mettre à jour
+ses informations de date.
+
+
+------------------------------------------------------------
+13. mkdir
+------------------------------------------------------------
+
+Commande :
+
+mkdir dossier
+
+`mkdir` signifie :
+
+Make Directory
+
+En français :
+
+Créer un répertoire.
+
+Exemple :
+
+mkdir examples
+
+Cela crée le dossier :
+
+examples
+
+
+------------------------------------------------------------
+14. cat
+------------------------------------------------------------
+
+Commande :
+
+cat fichier.txt
+
+`cat` affiche le contenu d'un fichier dans le terminal.
+
+Exemple :
+
+cat notes.txt
+
+Cela affiche le contenu de :
+
+notes.txt
+
+
+------------------------------------------------------------
+15. cat -n
+------------------------------------------------------------
+
+Commande :
+
+cat -n perm-manager.sh
+
+`cat` :
+
+affiche le contenu.
+
+`-n` :
+
+numérote les lignes.
+
+Donc :
+
+cat -n perm-manager.sh
+
+affiche le contenu de `perm-manager.sh` avec un numéro devant
+chaque ligne.
+
+Exemple :
+
+1  #!/bin/bash
+2
+3  echo "=== Linux Permission Manager ==="
+
+C'est particulièrement utile pour repérer une ligne précise
+dans le script.
+
+
+------------------------------------------------------------
+16. less
+------------------------------------------------------------
+
+Commande :
+
+less notes.txt
+
+`less` permet de consulter un fichier page par page.
+
+C'est utile lorsque le fichier est très long.
+
+Pour quitter `less` :
+
+q
+
+`q` signifie ici :
+
+quitter.
+
+
+------------------------------------------------------------
+17. rm
+------------------------------------------------------------
+
+Commande :
+
+rm fichier.txt
+
+`rm` signifie :
+
+remove
+
+En français :
+
+supprimer.
+
+Exemple :
+
+rm test.txt
+
+supprime le fichier :
+
+test.txt
+
+
+------------------------------------------------------------
+18. rm -r
+------------------------------------------------------------
+
+Commande :
+
+rm -r dossier
+
+`rm` :
+
+supprimer.
+
+`-r` :
+
+recursive.
+
+En français :
+
+récursif.
+
+Cette option permet de supprimer un dossier et son contenu
+récursivement.
+
+Exemple :
+
+rm -r examples
+
+Attention :
+
+cette commande peut supprimer plusieurs fichiers et dossiers.
+Elle doit donc être utilisée avec prudence.
+
+
+============================================================
+PARTIE 3 — PERMISSIONS LINUX
+============================================================
+
+
+------------------------------------------------------------
+19. Les trois catégories
+------------------------------------------------------------
+
+Linux distingue principalement :
+
+user
+group
+others
+
+En français :
+
+user :
+
+propriétaire.
+
+group :
+
+groupe.
+
+others :
+
+autres utilisateurs.
+
+
+------------------------------------------------------------
+20. r
+------------------------------------------------------------
+
+`r` signifie :
+
+read
+
+En français :
+
+lecture.
+
+Valeur numérique :
+
+4
+
+
+------------------------------------------------------------
+21. w
+------------------------------------------------------------
+
+`w` signifie :
+
+write
+
+En français :
+
+écriture.
+
+Valeur numérique :
+
+2
+
+
+------------------------------------------------------------
+22. x
+------------------------------------------------------------
+
+`x` signifie :
+
+execute
+
+En français :
+
+exécution.
+
+Valeur numérique :
+
+1
+
+
+------------------------------------------------------------
+23. Calcul des permissions
+------------------------------------------------------------
+
+Les valeurs sont :
+
+r = 4
+w = 2
+x = 1
+
+Donc :
+
+r-- = 4
+
+-w- = 2
+
+--x = 1
+
+rw- = 4 + 2 = 6
+
+r-x = 4 + 1 = 5
+
+rwx = 4 + 2 + 1 = 7
+
+
+------------------------------------------------------------
+24. Permission 600
+------------------------------------------------------------
+
+600 signifie :
+
+6 pour le propriétaire
+0 pour le groupe
+0 pour les autres
+
+Donc :
+
+600
+
+correspond à :
+
+rw-------
+
+Le propriétaire possède :
+
+r + w
+
+Le groupe ne possède aucun droit.
+
+Les autres ne possèdent aucun droit.
+
+
+------------------------------------------------------------
+25. Permission 640
+------------------------------------------------------------
+
+640 signifie :
+
+6 pour le propriétaire
+4 pour le groupe
+0 pour les autres
+
+Correspondance :
+
+rw-r-----
+
+Propriétaire :
+
+rw- = 6
+
+Groupe :
+
+r-- = 4
+
+Autres :
+
+--- = 0
+
+
+------------------------------------------------------------
+26. Permission 644
+------------------------------------------------------------
+
+644 signifie :
+
+6 pour le propriétaire
+4 pour le groupe
+4 pour les autres
+
+Correspondance :
+
+rw-r--r--
+
+Propriétaire :
+
+rw- = 6
+
+Groupe :
+
+r-- = 4
+
+Autres :
+
+r-- = 4
+
+
+------------------------------------------------------------
+27. Permission 700
+------------------------------------------------------------
+
+700 signifie :
+
+7 pour le propriétaire
+0 pour le groupe
+0 pour les autres
+
+Correspondance :
+
+rwx------
+
+Propriétaire :
+
+rwx = 7
+
+Groupe :
+
+--- = 0
+
+Autres :
+
+--- = 0
+
+
+------------------------------------------------------------
+28. Permission 755
+------------------------------------------------------------
+
+755 signifie :
+
+7 pour le propriétaire
+5 pour le groupe
+5 pour les autres
+
+Correspondance :
+
+rwxr-xr-x
+
+Propriétaire :
+
+rwx = 7
+
+Groupe :
+
+r-x = 5
+
+Autres :
+
+r-x = 5
+
+
+============================================================
+PARTIE 4 — chmod
+============================================================
+
+
+------------------------------------------------------------
+29. chmod
+------------------------------------------------------------
+
+Commande :
+
+chmod 644 notes.txt
+
+`chmod` permet de modifier les permissions.
+
+Dans :
+
+chmod 644 notes.txt
+
+on a :
+
+chmod
+│
+├── 644
+│   └── nouvelle permission
+│
+└── notes.txt
+    └── fichier concerné
+
+
+------------------------------------------------------------
+30. chmod +x
+------------------------------------------------------------
+
+Commande :
+
+chmod +x script.sh
+
+`chmod` :
+
+modifier les permissions.
+
+`+x` :
+
+ajouter le droit d'exécution.
+
+Exemple :
+
+chmod +x perm-manager.sh
+
+Cela permet ensuite d'exécuter directement :
+
+./perm-manager.sh
+
+
+============================================================
+PARTIE 5 — stat
+============================================================
+
+
+------------------------------------------------------------
+31. stat
+------------------------------------------------------------
+
+Commande :
+
+stat notes.txt
+
+`stat` affiche des informations détaillées sur un fichier.
+
+
+------------------------------------------------------------
+32. stat -c
+------------------------------------------------------------
+
+Commande :
+
+stat -c "%a" notes.txt
+
+`-c` permet de choisir le format de sortie de `stat`.
+
+Le texte situé après `-c` indique quelle information doit être
+affichée.
+
+
+------------------------------------------------------------
+33. %A
+------------------------------------------------------------
+
+Commande :
+
+stat -c "%A" notes.txt
+
+`%A` affiche les permissions sous forme symbolique.
+
+Exemple :
+
+-rw-r--r--
+
+
+------------------------------------------------------------
+34. %a
+------------------------------------------------------------
+
+Commande :
+
+stat -c "%a" notes.txt
+
+`%a` affiche les permissions sous forme numérique.
+
+Exemple :
+
+644
+
+
+------------------------------------------------------------
+35. %U
+------------------------------------------------------------
+
+Commande :
+
+stat -c "%U" notes.txt
+
+`%U` affiche le nom du propriétaire.
+
+
+------------------------------------------------------------
+36. %G
+------------------------------------------------------------
+
+Commande :
+
+stat -c "%G" notes.txt
+
+`%G` affiche le nom du groupe.
+
+
+============================================================
+PARTIE 6 — VARIABLES BASH
+============================================================
+
+
+------------------------------------------------------------
+37. Variable
+------------------------------------------------------------
+
+Exemple :
+
+file="notes.txt"
+
+Ici :
+
+file
+
+est le nom de la variable.
+
+"notes.txt"
+
+est la valeur.
+
+Le signe :
+
+=
+
+sert à affecter une valeur.
+
+
+------------------------------------------------------------
+38. Règle importante avec =
+------------------------------------------------------------
+
+Correct :
+
+file="notes.txt"
+
+Incorrect :
+
+file = "notes.txt"
+
+En Bash, lors d'une affectation, il ne faut pas mettre
+d'espaces autour de `=`.
+
+
+------------------------------------------------------------
+39. $
+------------------------------------------------------------
+
+Exemple :
+
+file="notes.txt"
+
+echo "$file"
+
+`$file` signifie :
+
+prendre la valeur contenue dans la variable `file`.
+
+Résultat :
+
+notes.txt
+
+
+============================================================
+PARTIE 7 — GUILLEMETS
+============================================================
+
+
+------------------------------------------------------------
+40. Guillemets doubles
+------------------------------------------------------------
+
+Exemple :
+
+"$file"
+
+Les guillemets doubles permettent notamment de protéger une
+valeur contenant des espaces.
+
+Ils permettent également les expansions de variables.
+
+Exemple :
+
+file="mon fichier.txt"
+
+echo "$file"
+
+Le chemin complet reste correctement traité.
+
+
+------------------------------------------------------------
+41. Guillemets simples
+------------------------------------------------------------
+
+Exemple :
+
+'75,90p'
+
+Les guillemets simples empêchent notamment les expansions
+et transmettent le contenu littéralement.
+
+Ils sont utilisés dans :
+
+sed -n '75,90p' perm-manager.sh
+
+
+============================================================
+PARTIE 8 — ARGUMENTS
+============================================================
+
+
+------------------------------------------------------------
+42. $1
+------------------------------------------------------------
+
+Quand on exécute :
+
+./perm-manager.sh notes.txt 644
+
+le premier argument est :
+
+notes.txt
+
+Dans le script :
+
+$1
+
+représente le premier argument.
+
+
+------------------------------------------------------------
+43. $2
+------------------------------------------------------------
+
+Dans :
+
+./perm-manager.sh notes.txt 644
+
+le deuxième argument est :
+
+644
+
+Dans le script :
+
+$2
+
+représente le deuxième argument.
+
+
+------------------------------------------------------------
+44. Différence script / fonction
+------------------------------------------------------------
+
+Au niveau du script :
+
+$1
+
+représente le premier argument du script.
+
+Mais dans une fonction :
+
+show_info "$file"
+
+à l'intérieur de :
+
+show_info
+
+le :
+
+$1
+
+représente le premier argument de la fonction.
+
+
+============================================================
+PARTIE 9 — read
+============================================================
+
+
+------------------------------------------------------------
+45. read
+------------------------------------------------------------
+
+`read` permet de récupérer une saisie utilisateur.
+
+Exemple :
+
+read choice
+
+L'utilisateur écrit une valeur.
+
+Cette valeur est stockée dans :
+
+choice
+
+
+------------------------------------------------------------
+46. read -p
+------------------------------------------------------------
+
+Exemple :
+
+read -p "Choice: " choice
+
+`read` :
+
+récupérer une saisie.
+
+`-p` :
+
+afficher une invite avant la saisie.
+
+"Choice: " :
+
+texte affiché.
+
+choice :
+
+variable dans laquelle la réponse est stockée.
+
+
+Autre exemple du projet :
+
+read -p "File: " file
+
+
+============================================================
+PARTIE 10 — TESTS [ ]
+============================================================
+
+
+------------------------------------------------------------
+47. [ ]
+------------------------------------------------------------
+
+Exemple :
+
+[ -f "$file" ]
+
+`[ ... ]` est une syntaxe utilisée par Bash pour effectuer
+un test.
+
+Les espaces sont obligatoires.
+
+Correct :
+
+[ -f "$file" ]
+
+Incorrect :
+
+[-f "$file"]
+
+
+------------------------------------------------------------
+48. -z
+------------------------------------------------------------
+
+Exemple :
+
+[ -z "$1" ]
+
+`-z` vérifie si une chaîne est vide.
+
+Dans :
+
+if [ -z "$1" ]; then
+
+cela signifie :
+
+si `$1` est vide.
+
+
+------------------------------------------------------------
+49. -f
+------------------------------------------------------------
+
+Exemple :
+
+[ -f "$file" ]
+
+`-f` vérifie si le chemin correspond à un fichier ordinaire.
+
+
+------------------------------------------------------------
+50. -d
+------------------------------------------------------------
+
+Exemple :
+
+[ -d "$file" ]
+
+`-d` vérifie si le chemin correspond à un répertoire.
+
+
+============================================================
+PARTIE 11 — CONDITIONS
+============================================================
+
+
+------------------------------------------------------------
+51. if
+------------------------------------------------------------
+
+Structure :
+
+if condition; then
+    commandes
+fi
+
+`if` signifie :
+
+si.
+
+
+------------------------------------------------------------
+52. then
+------------------------------------------------------------
+
+`then` indique le début des commandes exécutées lorsque
+la condition est vraie.
+
+
+------------------------------------------------------------
+53. fi
+------------------------------------------------------------
+
+`fi` termine la structure :
+
+if
+
+
+------------------------------------------------------------
+54. elif
+------------------------------------------------------------
+
+`elif` permet de tester une autre condition.
+
+Exemple :
+
+if condition1; then
+    ...
+elif condition2; then
+    ...
+else
+    ...
+fi
+
+
+------------------------------------------------------------
+55. else
+------------------------------------------------------------
+
+`else` correspond au cas où les conditions précédentes
+ne sont pas satisfaites.
+
+
+------------------------------------------------------------
+56. ;
+------------------------------------------------------------
+
+Dans :
+
+if [ -f "$file" ]; then
+
+le symbole `;` sépare deux éléments écrits sur la même ligne.
+
+On pourrait également écrire :
+
+if [ -f "$file" ]
+then
+    ...
+fi
+
+
+============================================================
+PARTIE 12 — FONCTIONS
+============================================================
+
+
+------------------------------------------------------------
+57. Déclarer une fonction
+------------------------------------------------------------
+
+Exemple :
+
+show_info() {
+    ...
+}
+
+`show_info` :
+
+nom de la fonction.
+
+`()` :
+
+syntaxe de déclaration de la fonction.
+
+`{` :
+
+début du bloc.
+
+`}` :
+
+fin du bloc.
+
+
+------------------------------------------------------------
+58. Appeler une fonction
+------------------------------------------------------------
+
+Exemple :
+
+show_info "$file"
+
+Cette ligne exécute la fonction :
+
+show_info
+
+et lui transmet :
+
+"$file"
+
+comme argument.
+
+
+------------------------------------------------------------
+59. local
+------------------------------------------------------------
+
+Exemple :
+
+local file="$1"
+
+`local` crée une variable locale à la fonction.
+
+Cette variable est utilisée dans le contexte de cette fonction.
+
+
+============================================================
+PARTIE 13 — CODE DE RETOUR
+============================================================
+
+
+------------------------------------------------------------
+60. Code de retour
+------------------------------------------------------------
+
+Bash utilise un code de retour pour indiquer le résultat
+d'une commande ou d'une fonction.
+
+En général :
+
+0 = succès
+
+valeur différente de 0 = échec
+
+
+------------------------------------------------------------
+61. return 0
+------------------------------------------------------------
+
+Exemple :
+
+return 0
+
+Dans une fonction, cela signifie :
+
+la fonction a réussi.
+
+
+------------------------------------------------------------
+62. return 1
+------------------------------------------------------------
+
+Exemple :
+
+return 1
+
+Dans une fonction, cela signifie :
+
+la fonction a échoué.
+
+
+------------------------------------------------------------
+63. Différence entre return et exit
+------------------------------------------------------------
+
+return :
+
+quitte la fonction.
+
+exit :
+
+quitte le script entier.
+
+
+============================================================
+PARTIE 14 — !
+============================================================
+
+
+------------------------------------------------------------
+64. !
+------------------------------------------------------------
+
+Le symbole :
+
+!
+
+inverse le résultat d'une commande ou d'un test.
+
+Exemple :
+
+if ! check_file "$file"; then
+
+Sans `!` :
+
+si check_file réussit.
+
+Avec `!` :
+
+si check_file échoue.
+
+
+Exemple :
+
+check_file "$file"
+
+Si le résultat est :
+
+0
+
+alors :
+
+! check_file "$file"
+
+inverse le résultat.
+
+
+============================================================
+PARTIE 15 — case
+============================================================
+
+
+------------------------------------------------------------
+65. case
+------------------------------------------------------------
+
+`case` permet de comparer une valeur avec plusieurs possibilités.
+
+Structure :
+
+case "$choice" in
+    1)
+        ...
+        ;;
+    2)
+        ...
+        ;;
+    *)
+        ...
+        ;;
+esac
+
+
+------------------------------------------------------------
+66. esac
+------------------------------------------------------------
+
+`esac` termine une structure `case`.
+
+C'est essentiellement `case` écrit à l'envers.
+
+
+------------------------------------------------------------
+67. |
+------------------------------------------------------------
+
+Dans :
+
+600|640|644|700|755)
+
+le symbole `|` signifie :
+
+OU.
+
+Donc :
+
+600 OU 640 OU 644 OU 700 OU 755
+
+
+------------------------------------------------------------
+68. ;;
+------------------------------------------------------------
+
+Dans `case` :
+
+;;
+
+termine une branche.
+
+Exemple :
+
+1)
+    echo "Option 1"
+    ;;
+
+
+------------------------------------------------------------
+69. *
+------------------------------------------------------------
+
+Dans :
+
+*)
+
+`*` représente le motif général.
+
+Il est utilisé ici pour gérer tous les cas qui n'ont pas
+correspondu aux possibilités précédentes.
+
+
+============================================================
+PARTIE 16 — BOUCLES
+============================================================
+
+
+------------------------------------------------------------
+70. while
+------------------------------------------------------------
+
+Structure :
+
+while condition
+do
+    commandes
+done
+
+`while` signifie :
+
+tant que.
+
+
+------------------------------------------------------------
+71. do
+------------------------------------------------------------
+
+`do` indique le début du corps de la boucle.
+
+
+------------------------------------------------------------
+72. done
+------------------------------------------------------------
+
+`done` indique la fin de la boucle.
+
+
+------------------------------------------------------------
+73. true
+------------------------------------------------------------
+
+Dans :
+
+while true
+
+`true` est une commande qui réussit toujours.
+
+La boucle continue donc jusqu'à ce qu'elle soit interrompue.
+
+
+------------------------------------------------------------
+74. break
+------------------------------------------------------------
+
+`break` quitte immédiatement la boucle.
+
+Dans le projet :
+
+break
+
+est utilisé lorsque l'utilisateur choisit :
+
+3
+
+
+------------------------------------------------------------
+75. continue
+------------------------------------------------------------
+
+`continue` abandonne l'itération actuelle et recommence
+la boucle.
+
+Dans le projet :
+
+if ! check_file "$file"; then
+    continue
+fi
+
+Si le fichier n'est pas valide, le programme revient
+au début du menu.
+
+
+============================================================
+PARTIE 17 — CALCULS
+============================================================
+
+
+------------------------------------------------------------
+76. $((...))
+------------------------------------------------------------
+
+Exemple :
+
+count=$((count + 1))
+
+`$((...))` permet d'effectuer un calcul arithmétique.
+
+Ici :
+
+count + 1
+
+est calculé.
+
+Le résultat est ensuite affecté à :
+
+count
+
+
+------------------------------------------------------------
+77. Différence entre $(...) et $((...))
+------------------------------------------------------------
+
+$(...)
+
+sert à effectuer une substitution de commande.
+
+Exemple :
+
+$(stat -c "%a" "$file")
+
+
+$((...))
+
+sert à effectuer un calcul arithmétique.
+
+Exemple :
+
+$((count + 1))
+
+
+============================================================
+PARTIE 18 — PIPE
+============================================================
+
+
+------------------------------------------------------------
+78. |
+------------------------------------------------------------
+
+Le symbole `|` peut avoir plusieurs significations selon
+le contexte.
+
+Dans un pipeline :
+
+commande1 | commande2
+
+la sortie de `commande1` est envoyée vers `commande2`.
+
+Exemple utilisé :
+
+sed -n '75,90p' perm-manager.sh | cat -n
+
+Fonctionnement :
+
+sed
+ |
+cat
+
+
+`sed` produit du texte.
+
+Le pipe transmet ce texte.
+
+`cat -n` reçoit le texte et ajoute les numéros de lignes.
+
+
+IMPORTANT :
+
+Le `|` d'un pipeline n'a pas le même rôle que le `|` dans
+un `case`.
+
+Dans :
+
+600|640|644
+
+`|` signifie :
+
+OU.
+
+Dans :
+
+sed ... | cat
+
+`|` signifie :
+
+envoyer la sortie vers la commande suivante.
+
+
+============================================================
+PARTIE 19 — COMMENTAIRES ET SHEBANG
+============================================================
+
+
+------------------------------------------------------------
+79. #
+------------------------------------------------------------
+
+Le symbole :
+
+#
+
+permet d'écrire un commentaire.
+
+Exemple :
+
+# Display file information
+
+Bash ne considère pas le texte du commentaire comme une
+commande à exécuter.
+
+
+------------------------------------------------------------
+80. #! / shebang
+------------------------------------------------------------
+
+Première ligne du script :
+
+#!/bin/bash
+
+Cette ligne est appelée :
+
+shebang.
+
+Elle indique que le script doit être interprété par :
+
+/bin/bash
+
+
+============================================================
+PARTIE 20 — echo
+============================================================
+
+
+------------------------------------------------------------
+81. echo
+------------------------------------------------------------
+
+Exemple :
+
+echo "Hello"
+
+`echo` affiche du texte.
+
+Dans le projet :
+
+echo "=== Linux Permission Manager ==="
+
+affiche le titre.
+
+Autre exemple :
+
+echo "Error: Invalid permission."
+
+affiche un message d'erreur.
+
+
+============================================================
+PARTIE 21 — LE PROJET
+============================================================
+
+
+------------------------------------------------------------
+82. Structure actuelle du projet
+------------------------------------------------------------
+
+Le dossier contient actuellement :
+
+examples
+perm-manager.sh
+test-function-menu.sh
+test-read.sh
+notes.txt
+README.md
+test-menu.sh
+test-while.sh
+
+
+Le fichier principal est :
+
+perm-manager.sh
+
+
+Le fichier de notes est :
+
+notes.txt
+
+
+------------------------------------------------------------
+83. Fonction show_info
+------------------------------------------------------------
+
+Code :
+
+show_info() {
+    local file="$1"
+
+    echo "Permissions: $(stat -c "%A" "$file")"
+    echo "Numeric permissions: $(stat -c "%a" "$file")"
+    echo "Owner: $(stat -c "%U" "$file")"
+    echo "Group: $(stat -c "%G" "$file")"
+}
+
+Cette fonction reçoit un fichier.
+
+Elle affiche :
+
+- les permissions symboliques ;
+- les permissions numériques ;
+- le propriétaire ;
+- le groupe.
+
+
+------------------------------------------------------------
+84. Fonction is_valid_permission
+------------------------------------------------------------
+
+Code :
+
+is_valid_permission() {
+    local permission="$1"
+
+    case "$permission" in
+        600|640|644|700|755)
+            return 0
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+}
+
+Cette fonction vérifie si la permission est autorisée.
+
+Permissions autorisées :
+
+600
+640
+644
+700
+755
+
+
+------------------------------------------------------------
+85. Fonction check_file
+------------------------------------------------------------
+
+Code :
+
+check_file() {
+    local file="$1"
+
+    if [ -f "$file" ]; then
+        return 0
+    elif [ -d "$file" ]; then
+        echo "Error: Path is a directory."
+        return 1
+    else
+        echo "Error: File does not exist."
+        return 1
+    fi
+}
+
+Cette fonction vérifie si le chemin correspond à un fichier.
+
+Si c'est un fichier :
+
+return 0
+
+Si c'est un dossier :
+
+echo "Error: Path is a directory."
+
+return 1
+
+Si le chemin n'existe pas :
+
+echo "Error: File does not exist."
+
+return 1
+
+
+------------------------------------------------------------
+86. Fonction apply_permission
+------------------------------------------------------------
+
+Code :
+
+apply_permission() {
+    local permission="$1"
+    local file="$2"
+
+    if chmod "$permission" "$file"; then
+        echo "Permission $permission applied successfully."
+        return 0
+    else
+        echo "Error: Failed to change permissions."
+        return 1
+    fi
+}
+
+La fonction reçoit :
+
+$1 = permission
+
+$2 = fichier
+
+
+Exemple :
+
+apply_permission "644" "notes.txt"
+
+Elle exécute :
+
+chmod "644" "notes.txt"
+
+
+============================================================
+PARTIE 22 — MENU INTERACTIF
+============================================================
+
+
+------------------------------------------------------------
+87. Fonction menu
+------------------------------------------------------------
+
+Code :
+
+menu() {
+    while true
+    do
+        echo
+        echo "1) Show file information"
+        echo "2) Change permissions"
+        echo "3) Exit"
+
+        read -p "Choice: " choice
+
+        case "$choice" in
+            1)
+                ...
+                ;;
+            2)
+                ...
+                ;;
+            3)
+                ...
+                ;;
+            *)
+                ...
+                ;;
+        esac
+    done
+}
+
+
+Le menu utilise :
+
+while
+
+pour répéter le menu.
+
+read
+
+pour récupérer le choix.
+
+case
+
+pour déterminer l'action.
+
+break
+
+pour quitter le menu.
+
+
+------------------------------------------------------------
+88. Option 1
+------------------------------------------------------------
+
+Code :
+
+1)
+    read -p "File: " file
+
+    if check_file "$file"; then
+        show_info "$file"
+    fi
+    ;;
+
+L'utilisateur choisit :
+
+1
+
+Le programme demande le fichier.
+
+Puis `check_file` vérifie le chemin.
+
+Si le chemin correspond à un fichier :
+
+show_info
+
+affiche ses informations.
+
+
+------------------------------------------------------------
+89. Option 2
+------------------------------------------------------------
+
+Code :
+
+2)
+    read -p "File: " file
+
+    if ! check_file "$file"; then
+        continue
+    fi
+
+    read -p "Permission: " permission
+
+    if ! is_valid_permission "$permission"; then
+        echo "Error: Invalid permission."
+        echo "Allowed permissions: 600, 640, 644, 700, 755"
+        continue
+    fi
+
+    apply_permission "$permission" "$file"
+    ;;
+
+
+Étapes :
+
+1. demander le fichier ;
+2. vérifier le fichier ;
+3. demander la permission ;
+4. vérifier la permission ;
+5. appliquer la permission.
+
+
+------------------------------------------------------------
+90. Option 3
+------------------------------------------------------------
+
+Code :
+
+3)
+    echo "Exiting..."
+    break
+    ;;
+
+Le programme affiche :
+
+Exiting...
+
+Puis :
+
+break
+
+quitte la boucle.
+
+
+------------------------------------------------------------
+91. Choix invalide
+------------------------------------------------------------
+
+Code :
+
+*)
+    echo "Error: Invalid choice."
+    ;;
+
+`*` récupère tous les choix non prévus.
+
+Exemple :
+
+4
+
+ou :
+
+abc
+
+ou une saisie vide.
+
+
+============================================================
+PARTIE 23 — MODE INTERACTIF
+============================================================
+
+
+------------------------------------------------------------
+92. Aucun argument
+------------------------------------------------------------
+
+Code :
+
+if [ -z "$1" ]; then
+    menu
+    exit 0
+fi
+
+Si `$1` est vide :
+
+le programme lance :
+
+menu
+
+Puis :
+
+exit 0
+
+termine normalement le script après la sortie du menu.
+
+
+Commande :
+
+./perm-manager.sh
+
+lance donc le mode interactif.
+
+
+============================================================
+PARTIE 24 — MODE ARGUMENTS
+============================================================
+
+
+------------------------------------------------------------
+93. Commande
+------------------------------------------------------------
+
+Commande :
+
+./perm-manager.sh notes.txt 644
+
+Arguments :
+
+$1 = notes.txt
+
+$2 = 644
+
+
+------------------------------------------------------------
+94. Vérification de $2
+------------------------------------------------------------
+
+Code :
+
+if [ -z "$2" ]; then
+    echo "Error: No permission specified."
+    echo "Usage: ./perm-manager.sh <file> <permission>"
+    exit 1
+fi
+
+Si aucune permission n'a été fournie :
+
+$2
+
+est vide.
+
+Le programme affiche une erreur puis :
+
+exit 1
+
+
+------------------------------------------------------------
+95. Vérification du fichier
+------------------------------------------------------------
+
+Code :
+
+if ! check_file "$1"; then
+    exit 1
+fi
+
+La fonction :
+
+check_file
+
+vérifie le fichier.
+
+Si elle échoue :
+
+!
+
+inverse le résultat.
+
+Puis :
+
+exit 1
+
+termine le programme.
+
+
+------------------------------------------------------------
+96. Affichage des informations
+------------------------------------------------------------
+
+Code :
+
+show_info "$1"
+
+Le premier argument du script est envoyé à :
+
+show_info
+
+
+------------------------------------------------------------
+97. Validation de la permission
+------------------------------------------------------------
+
+Code :
+
+if ! is_valid_permission "$2"; then
+    echo "Error: Invalid permission."
+    echo "Allowed permissions: 600, 640, 644, 700, 755"
+    exit 1
+fi
+
+La permission reçue dans `$2` est vérifiée.
+
+
+------------------------------------------------------------
+98. Application de la permission
+------------------------------------------------------------
+
+Code :
+
+if ! apply_permission "$2" "$1"; then
+    exit 1
+fi
+
+Arguments :
+
+$2 = permission
+
+$1 = fichier
+
+
+------------------------------------------------------------
+99. Vérification finale
+------------------------------------------------------------
+
+Code :
+
+echo "Numeric permissions: $(stat -c "%a" "$1")"
+
+Bash exécute :
+
+stat -c "%a" "$1"
+
+Puis récupère son résultat grâce à :
+
+$(...)
+
+Exemple :
+
+Numeric permissions: 644
+
+
+============================================================
+PARTIE 25 — ORDRE COMPLET DU SCRIPT
+============================================================
+
+
+------------------------------------------------------------
+100. Ordre d'exécution
+------------------------------------------------------------
+
+Le programme suit cette logique :
+
+1. Bash lit le shebang.
+
+2. Le titre est affiché.
+
+3. Les fonctions sont définies.
+
+4. Le programme vérifie si aucun argument n'a été fourni.
+
+5. Si aucun argument :
+   lancement du menu.
+
+6. Sinon :
+   vérification de `$2`.
+
+7. Vérification du fichier.
+
+8. Affichage des informations actuelles.
+
+9. Validation de la permission.
+
+10. Application de la permission.
+
+11. Affichage de la permission finale.
+
+
+IMPORTANT :
+
+Définir une fonction ne signifie pas l'exécuter.
+
+Exemple :
+
+show_info() {
+    ...
+}
+
+ne lance pas immédiatement la fonction.
+
+La fonction est exécutée lorsqu'on écrit :
+
+show_info "$1"
+
+
+============================================================
+PARTIE 26 — COMMANDES DE TRAVAIL SUR LE CODE
+============================================================
+
+
+------------------------------------------------------------
+101. cd ~/linux-permission-manager
+------------------------------------------------------------
+
+Commande :
+
+cd ~/linux-permission-manager
+
+Décomposition :
+
+cd
+|
+└── changer de répertoire
+
+~
+|
+└── répertoire personnel
+
+/
+|
+└── séparation entre dossiers
+
+linux-permission-manager
+|
+└── dossier du projet
+
+
+------------------------------------------------------------
+102. ls
+------------------------------------------------------------
+
+Commande :
+
+ls
+
+Permet de vérifier les fichiers présents dans le projet.
+
+
+------------------------------------------------------------
+103. cat -n perm-manager.sh
+------------------------------------------------------------
+
+Commande :
+
+cat -n perm-manager.sh
+
+Permet d'afficher tout le script avec les numéros de lignes.
+
+
+------------------------------------------------------------
+104. head -10 perm-manager.sh
+------------------------------------------------------------
+
+Commande :
+
+head -10 perm-manager.sh
+
+`head` affiche le début d'un fichier.
+
+`-10` demande les dix premières lignes.
+
+Cette commande est utile pour vérifier rapidement le début
+du script.
+
+
+------------------------------------------------------------
+105. sed -n '75,90p' perm-manager.sh
+------------------------------------------------------------
+
+Commande :
+
+sed -n '75,90p' perm-manager.sh
+
+`sed` permet notamment de sélectionner et traiter des lignes.
+
+`-n` :
+
+ne pas afficher automatiquement toutes les lignes.
+
+'75,90p' :
+
+75 = ligne de départ.
+
+90 = ligne de fin.
+
+p = print, afficher.
+
+Donc :
+
+afficher les lignes 75 à 90.
+
+
+------------------------------------------------------------
+106. sed -n '75,90p' perm-manager.sh | cat -n
+------------------------------------------------------------
+
+Commande complète :
+
+sed -n '75,90p' perm-manager.sh | cat -n
+
+Première partie :
+
+sed -n '75,90p' perm-manager.sh
+
+affiche les lignes 75 à 90.
+
+Puis :
+
+|
+
+transmet cette sortie à :
+
+cat -n
+
+qui affiche le résultat avec des numéros de lignes.
+
+
+============================================================
+PARTIE 27 — bash -n
+============================================================
+
+
+------------------------------------------------------------
+107. bash -n perm-manager.sh
+------------------------------------------------------------
+
+Commande :
+
+bash -n perm-manager.sh
+
+`bash` :
+
+utilise l'interpréteur Bash.
+
+`-n` :
+
+vérifie la syntaxe sans exécuter le script.
+
+`perm-manager.sh` :
+
+fichier à analyser.
+
+
+Si aucune erreur n'est affichée :
+
+la syntaxe Bash est correcte.
+
+
+IMPORTANT :
+
+bash -n
+
+ne garantit pas que le programme fonctionne correctement.
+
+Il vérifie principalement la syntaxe.
+
+
+============================================================
+PARTIE 28 — EXÉCUTER LE SCRIPT
+============================================================
+
+
+------------------------------------------------------------
+108. ./perm-manager.sh
+------------------------------------------------------------
+
+Commande :
+
+./perm-manager.sh
+
+`./` :
+
+répertoire courant.
+
+`perm-manager.sh` :
+
+script à exécuter.
+
+Comme aucun argument n'est fourni :
+
+$1
+
+est vide.
+
+Le menu interactif est donc lancé.
+
+
+------------------------------------------------------------
+109. ./perm-manager.sh notes.txt 644
+------------------------------------------------------------
+
+Commande :
+
+./perm-manager.sh notes.txt 644
+
+Interprétation :
+
+./perm-manager.sh
+|
+└── script
+
+notes.txt
+|
+└── $1
+
+644
+|
+└── $2
+
+
+Le programme vérifie ensuite :
+
+- le fichier ;
+- la permission ;
+- applique `chmod` ;
+- affiche le résultat.
+
+
+------------------------------------------------------------
+110. stat -c "%a" notes.txt
+------------------------------------------------------------
+
+Commande :
+
+stat -c "%a" notes.txt
+
+Cette commande permet de vérifier directement la permission
+numérique.
+
+Exemple :
+
+644
+
+
+============================================================
+PARTIE 29 — TESTS EFFECTUÉS
+============================================================
+
+
+------------------------------------------------------------
+111. Permission valide
+------------------------------------------------------------
+
+Commande :
+
+./perm-manager.sh notes.txt 644
+
+Résultat attendu :
+
+=== Linux Permission Manager ===
+Permissions: -rw-r--r--
+Numeric permissions: 644
+Owner: ghostroot
+Group: ghostroot
+Permission 644 applied successfully.
+Numeric permissions: 644
+
+
+------------------------------------------------------------
+112. Permission invalide
+------------------------------------------------------------
+
+Commande :
+
+./perm-manager.sh notes.txt 999
+
+Résultat attendu :
+
+Error: Invalid permission.
+Allowed permissions: 600, 640, 644, 700, 755
+
+
+------------------------------------------------------------
+113. Permission manquante
+------------------------------------------------------------
+
+Commande :
+
+./perm-manager.sh notes.txt
+
+Résultat :
+
+Error: No permission specified.
+Usage: ./perm-manager.sh <file> <permission>
+
+
+------------------------------------------------------------
+114. Fichier inexistant
+------------------------------------------------------------
+
+Commande :
+
+./perm-manager.sh fichier-inexistant.txt 644
+
+Résultat :
+
+Error: File does not exist.
+
+
+------------------------------------------------------------
+115. Répertoire utilisé comme fichier
+------------------------------------------------------------
+
+Commande :
+
+./perm-manager.sh . 644
+
+Résultat :
+
+Error: Path is a directory.
+
+
+------------------------------------------------------------
+116. Vérification indépendante
+------------------------------------------------------------
+
+Commande :
+
+stat -c "%a" notes.txt
+
+Si le résultat est :
+
+644
+
+alors la permission numérique actuelle est bien :
+
+644
+
+
+============================================================
+PARTIE 30 — test-while.sh
+============================================================
+
+
+------------------------------------------------------------
+117. Code
+------------------------------------------------------------
+
+count=1
+
+while [ "$count" -le 3 ]
+do
+    echo "Compteur : $count"
+    count=$((count + 1))
+done
+
+
+------------------------------------------------------------
+118. count=1
+------------------------------------------------------------
+
+`count` est une variable.
+
+Sa valeur initiale est :
+
+1
+
+
+------------------------------------------------------------
+119. -le
+------------------------------------------------------------
+
+Dans :
+
+[ "$count" -le 3 ]
+
+`-le` signifie :
+
+less than or equal
+
+En français :
+
+inférieur ou égal.
+
+Donc :
+
+count <= 3
+
+
+------------------------------------------------------------
+120. count=$((count + 1))
+------------------------------------------------------------
+
+Cette instruction ajoute :
+
+1
+
+à la valeur actuelle de :
+
+count
+
+
+============================================================
+PARTIE 31 — DIFFÉRENCES IMPORTANTES
+============================================================
+
+
+------------------------------------------------------------
+121. $(...)
+------------------------------------------------------------
+
+Utilisé pour récupérer la sortie d'une commande.
+
+Exemple :
+
+$(stat -c "%a" "$file")
+
+
+------------------------------------------------------------
+122. $((...))
+------------------------------------------------------------
+
+Utilisé pour effectuer un calcul.
+
+Exemple :
+
+$((count + 1))
+
+
+------------------------------------------------------------
+123. return
+------------------------------------------------------------
+
+Utilisé dans une fonction.
+
+Exemple :
+
+return 1
+
+
+------------------------------------------------------------
+124. exit
+------------------------------------------------------------
+
+Utilisé pour terminer le script.
+
+Exemple :
+
+exit 1
+
+
+------------------------------------------------------------
+125. break
+------------------------------------------------------------
+
+Utilisé pour quitter une boucle.
+
+
+------------------------------------------------------------
+126. continue
+------------------------------------------------------------
+
+Utilisé pour passer à l'itération suivante d'une boucle.
+
+
+============================================================
+PARTIE 32 — RÉSUMÉ DES SYMBOLES
+============================================================
+
+$
+    récupérer une variable ou un paramètre.
+
+$1
+    premier argument.
+
+$2
+    deuxième argument.
+
+$(...)
+    substitution de commande.
+
+$((...))
+    calcul arithmétique.
+
+"..."
+    guillemets doubles.
+
+'...'
+    guillemets simples.
+
+[ ... ]
+    test Bash.
+
+!
+    inverse le résultat.
+
+;
+    sépare des commandes sur une même ligne.
+
+;;
+    termine une branche de `case`.
+
+|
+    pipe dans un pipeline.
+    OU dans certains motifs de `case`.
+
+*
+    motif général dans `case`.
+
+()
+    syntaxe d'une fonction.
+
+{}
+    bloc de commandes d'une fonction.
+
+~
+    répertoire personnel.
+
+.
+    répertoire courant.
+
+..
+    répertoire parent.
+
+./
+    répertoire courant utilisé dans un chemin.
+
+#
+    commentaire.
+
+=
+    affectation.
+
+
+============================================================
+PARTIE 33 — RÉSUMÉ DE CHAQUE COMMANDE
+============================================================
+
+pwd
+    Affiche le répertoire courant.
+
+ls
+    Affiche le contenu du répertoire courant.
+
+ls -l
+    Affiche le contenu avec des informations détaillées.
+
+ls -la
+    Affiche les informations détaillées et les fichiers cachés.
+
+cd
+    Change de répertoire.
+
+cd ..
+    Remonte au répertoire parent.
+
+cd ~
+    Va dans le répertoire personnel.
+
+touch
+    Crée un fichier.
+
+mkdir
+    Crée un dossier.
+
+cat
+    Affiche le contenu d'un fichier.
+
+cat -n
+    Affiche le contenu avec les numéros de lignes.
+
+less
+    Consulte un fichier page par page.
+
+rm
+    Supprime un fichier.
+
+rm -r
+    Supprime récursivement un dossier et son contenu.
+
+chmod
+    Modifie les permissions.
+
+chmod +x
+    Ajoute le droit d'exécution.
+
+stat
+    Affiche les informations d'un fichier.
+
+stat -c
+    Permet de choisir le format de sortie de `stat`.
+
+head -10
+    Affiche les dix premières lignes.
+
+sed -n '75,90p'
+    Affiche une plage précise de lignes.
+
+bash -n
+    Vérifie la syntaxe Bash sans exécuter le script.
+
+./script.sh
+    Exécute un script situé dans le répertoire courant.
+
+
+============================================================
+PARTIE 34 — STRUCTURES BASH
+============================================================
+
+if
+    Commence une condition.
+
+then
+    Commence le bloc exécuté si la condition est vraie.
+
+elif
+    Teste une autre condition.
+
+else
+    Cas alternatif.
+
+fi
+    Termine un `if`.
+
+case
+    Compare une valeur à plusieurs possibilités.
+
+esac
+    Termine un `case`.
+
+while
+    Répète des commandes tant qu'une condition réussit.
+
+do
+    Commence le corps d'une boucle.
+
+done
+    Termine le corps d'une boucle.
+
+function()
+    Déclare une fonction.
+
+local
+    Crée une variable locale.
+
+return
+    Retourne un code depuis une fonction.
+
+exit
+    Termine le script.
+
+break
+    Quitte une boucle.
+
+continue
+    Passe à l'itération suivante.
+
+read
+    Récupère une saisie utilisateur.
+
+
+============================================================
+PARTIE 35 — CE QUE LE PROJET SAIT FAIRE
+============================================================
+
+Le projet sait actuellement :
+
+1. lancer un menu interactif ;
+2. afficher les informations d'un fichier ;
+3. afficher les permissions symboliques ;
+4. afficher les permissions numériques ;
+5. afficher le propriétaire ;
+6. afficher le groupe ;
+7. vérifier qu'un chemin est un fichier ;
+8. détecter un répertoire ;
+9. détecter un fichier inexistant ;
+10. valider les permissions autorisées ;
+11. modifier les permissions avec `chmod` ;
+12. fonctionner avec des arguments ;
+13. gérer plusieurs erreurs ;
+14. utiliser des fonctions ;
+15. utiliser une boucle ;
+16. utiliser un menu ;
+17. utiliser `case` ;
+18. utiliser `return` ;
+19. utiliser `break` ;
+20. utiliser `continue` ;
+21. vérifier la syntaxe avec `bash -n`.
+
+
+============================================================
+PARTIE 36 — MÉTHODE DE TRAVAIL
+============================================================
+
+Pour travailler correctement sur le projet :
+
+1. Se placer dans le projet :
+
+cd ~/linux-permission-manager
+
+
+2. Vérifier les fichiers :
+
+ls
+
+
+3. Lire le script :
+
+cat -n perm-manager.sh
+
+
+4. Examiner le début :
+
+head -10 perm-manager.sh
+
+
+5. Examiner une partie précise :
+
+sed -n '75,90p' perm-manager.sh
+
+
+6. Vérifier la syntaxe :
+
+bash -n perm-manager.sh
+
+
+7. Tester le mode interactif :
+
+./perm-manager.sh
+
+
+8. Tester le mode arguments :
+
+./perm-manager.sh notes.txt 644
+
+
+9. Vérifier le résultat :
+
+stat -c "%a" notes.txt
+
+
+La logique de travail est :
+
+inspection
+    ↓
+modification
+    ↓
+vérification syntaxique
+    ↓
+test
+    ↓
+vérification du résultat
+
+
+============================================================
+PARTIE 37 — RÈGLE POUR LA SUITE
+============================================================
+
+Avant d'ajouter une nouvelle fonctionnalité au projet,
+il faut être capable d'expliquer les notions déjà utilisées.
+
+Notions importantes :
+
+pwd
+ls
+cd
+touch
+mkdir
+cat
+less
+rm
+chmod
+stat
+variables
+$
+$1
+$2
+read
+[ ]
+-z
+-f
+-d
+if
+elif
+else
+functions
+local
+return
+exit
+!
+case
+|
+*
+;;
+while
+true
+break
+continue
+$(...)
+$((...))
+bash -n
+./
+
+
+============================================================
+PARTIE 38 — RÉSUMÉ FINAL
+============================================================
+
+Le projet permet de pratiquer progressivement :
+
+Linux
+↓
+navigation
+↓
+fichiers
+↓
+dossiers
+↓
+chemins
+↓
+permissions
+↓
+chmod
+↓
+Bash
+↓
+variables
+↓
+arguments
+↓
+tests
+↓
+conditions
+↓
+fonctions
+↓
+code de retour
+↓
+case
+↓
+boucles
+↓
+menu interactif
+↓
+validation
+↓
+gestion des erreurs
+
+
+Le projet actuel contient deux modes :
+
+Mode interactif :
+
+./perm-manager.sh
+
+
+Mode arguments :
+
+./perm-manager.sh notes.txt 644
+
+
+Les permissions autorisées sont :
+
+600
+640
+644
+700
+755
+
+
+Le script utilise plusieurs fonctions :
+
+show_info
+is_valid_permission
+apply_permission
+check_file
+menu
+
+
+Les principales notions Bash utilisées sont :
+
+if
+case
+while
+function
+read
+return
+exit
+break
+continue
+local
+!
+$(...)
+$((...))
+
+
+La priorité est maintenant de comprendre précisément
+chaque commande, chaque structure et chaque symbole avant
+d'ajouter de nouvelles fonctionnalités au projet.
